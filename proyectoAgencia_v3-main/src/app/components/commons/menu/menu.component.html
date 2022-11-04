@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <img class="logo" src="https://cdn-icons-png.flaticon.com/512/2060/2060284.png" width ="35" >
+    <a class="navbar-brand" routerLink="/principal"></a>
+    <a class="navbar-brand" routerLink="/principal">Cusco City Tours</a>
+    <button class="navbar-toggler" type="button" (click)="collapse.toggle()" data-bs-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <ngx-navbar-collapse #collapse="ngxNavbarCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <!-- PARTE DEL CARRITO -->
+        <li class="nav-item dropdown" dropdown>
+          <a class="nav-link dropdown-toggle" dropdownToggle id="usuarioDropdown" role="button" aria-controls="dropdownUsuario" data-bs-toggle="dropdowm">  
+            Paquetes
+          </a>
+          <ul class="dropdown-menu" id="dropdownUsuario" *dropdownMenu aria-labelledby="usuarioDropdown">
+            <li><a class="dropdown-item" (click)="collapse.toggle()" routerLink="/galeria">Paquetes</a></li>
+            <li><a class="dropdown-item" (click)="collapse.toggle()" routerLink="/detalle-producto" >Carrito</a></li>
+          </ul>
+        </li>
+
+        <!-- VISTA ADMIN -->
+        <li *ngIf="!validarLogin" class="nav-item dropdown" dropdown>
+          <a class="nav-link dropdown-toggle" dropdownToggle id="usuarioDropdown" role="button" aria-controls="dropdownUsuario">
+            Administrador
+          </a>
+          <ul class="dropdown-menu" id="dropdownUsuario" *dropdownMenu aria-labelledby="usuarioDropdown">
+            <!-- <li><a class="dropdown-item" (click)="collapse.toggle()" routerLink="/datos" *ngFor="let user of user"> Bienvenido {{ user.user }} </a></li> -->
+            <li><a class="dropdown-item" (click)="collapse.toggle()" routerLink="/datos"> Bienvenido usuario </a></li>
+            <li><a class="dropdown-item" (click)="collapse.toggle()" routerLink="/paquetes">Administrar Productos</a></li>
+            <li><a class="dropdown-item" (click)="collapse.toggle()" routerLink="/ventas">Ventas</a>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" (click)="salir()" routerLink="/principal">Cerrar Sesión</a></li>
+          </ul>
+        </li>
+
+        <!-- LOGIN -->
+        <li *ngIf="!validarLogin" (login) = "actualiza()" class="nav-item">
+          <a class="nav-link" routerLink="/login">Iniciar Sesión</a>
+        </li>
+      </ul>
+    </ngx-navbar-collapse>
+  </div>
+</nav>

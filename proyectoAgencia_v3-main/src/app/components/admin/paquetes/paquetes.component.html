@@ -1,0 +1,112 @@
+<div *ngIf="validarLogin">
+  <div class="content" role="main">
+    <div class="container-flex p-3">
+      <h1>Paquetes completos</h1>
+      <div>
+        <div class="container-flex pt-3 p-2">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Destino</th>
+                <th scope="col">Tiempo</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Edición</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let packet of packet">
+              <tr>
+                <th scope="row">{{ packet.idPacket }}</th>
+                <td>{{ packet.nombreDestino }}</td>
+                <td>{{ packet.tiempo }}</td>
+                <td>S/{{ packet.precioDestino }}.00</td>
+                <td><button type="button" class="btn btn-primary" (click)="openModal(template, id)">Editar</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="p-5 pt-2 pb-2">
+          <td><button type="button" class="btn btn-primary" (click)="openModal(template2, id)">Nuevo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!validarLogin" class="container text-center p-5">
+  <h1>Por favor, inicie sesión</h1>
+</div>
+
+<!-- Modal -->
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Editar Paquete</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+    <form id="form1" name="form1" #form="ngForm">
+        <div class="mb-3">
+            <label for="detalle" class="form-label title-description">Destino</label>
+            <input id="input1" name="input1" type="text" required [(ngModel)]="destino" class="form-control" id="detalle" placeholder="Detalle"/>
+        </div>
+        <div class="mb-3">
+            <label for="Nombre" class="form-label title-description">Tiempo</label>
+            <input id="input2" name="input2" type="text" required [(ngModel)]="tiempo" class="form-control" id="Nombre" placeholder="Nombre" autofocus/>
+        </div>
+        <div class="mb-3">
+            <label for="Stoke" class="form-label title-description">Precio</label>
+            <input id="input3" name="input3" type="text" required [(ngModel)]="precio" class="form-control" id="Stoke" placeholder="Stoke"/>
+            
+        </div>
+    </form>
+    <div class="row p-3 pt-1 pb-1">
+      <div class="col-md-3">
+        <button type="button" class="btn btn-danger" aria-label="Close" (click)="modalRef?.hide()">
+          <span aria-hidden="true" class="visually-hidden">&times;</span>Cancelar
+        </button>
+      </div>
+      <div class="col-md-3">
+        <button type="button" class="btn btn-success" (click)="paqueteGuardar()" (click)="modalRef?.hide()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<!-- Modal -->
+<ng-template #template2>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Editar Paquete</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+    <form id="form1" name="form1" #form="ngForm">
+        <div class="mb-3">
+            <label for="detalle" class="form-label title-description">Destino</label>
+            <input id="input1" name="input1" type="text" required [(ngModel)]="destino" class="form-control" id="detalle" placeholder="Detalle"/>
+        </div>
+        <div class="mb-3">
+            <label for="Nombre" class="form-label title-description">Tiempo</label>
+            <input id="input2" name="input2" type="text" required [(ngModel)]="tiempo" class="form-control" id="Nombre" placeholder="Nombre" autofocus/>
+        </div>
+        <div class="mb-3">
+            <label for="Stoke" class="form-label title-description">Precio</label>
+            <input id="input3" name="input3" type="text" required [(ngModel)]="precio" class="form-control" id="Stoke" placeholder="Stoke"/>
+            
+        </div>
+    </form>
+    <div class="row p-3 pt-1 pb-1">
+      <div class="col-md-3">
+        <button type="button" class="btn btn-danger" aria-label="Close" (click)="modalRef?.hide()">
+          <span aria-hidden="true" class="visually-hidden">&times;</span>Cancelar
+        </button>
+      </div>
+      <div class="col-md-3">
+        <button type="button" class="btn btn-success" (click)="paqueteNuevo()" (click)="modalRef?.hide()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</ng-template>

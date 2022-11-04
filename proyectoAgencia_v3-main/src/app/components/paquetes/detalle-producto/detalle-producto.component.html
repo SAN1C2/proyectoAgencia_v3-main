@@ -1,0 +1,22 @@
+<h2 class="text-center p-3 pb-1" style="color: orange">ESTOS SON LOS PAQUETES QUE TIENE EN SU CARRITO</h2>
+<div class="container">
+    <h5 style="color: orange">Cantidad de paquetes: {{ pags.length }}</h5>
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <th>TOURS</th>
+                <th>DESCRIPCION</th>
+                <th>PRECIO</th> 
+                <th></th>  
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <tr class="table-light" *ngFor="let paquete of pags ; index as i">
+                <td class="tour">{{ paquete.nombreDestino }}</td>
+                <td class="descripcion">{{ paquete.descripcion }}</td>
+                <td class="precio">{{ paquete.precioDestino }}</td>
+                <td>  <button class="btn btn-outline-danger" (click)="eliminarPaquete(i)">Eliminar</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
